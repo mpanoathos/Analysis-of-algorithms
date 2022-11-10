@@ -25,15 +25,6 @@ class linkedList {
 		this->head =List2.head;
 		this->tail=tail;
 		}
-		//destructor
-		~linkedList(){
-			node *current=new node;
-			current=head;
-			while(current->next!=NULL){
-				delete current;
-				current=current->next;
-			}
-		}
 		//inserting number at the front
 		void insertAtFront (int number) {
 			node *b = new node();
@@ -166,13 +157,13 @@ class linkedList {
 int main() {
 	int size_of_list, choice, insertedNum;
 
-	cout<<"Enter the number of integers to be generated.\n";
+	cout<<"Enter the number of integers to be generated:";
 	cin>>size_of_list;
 
 	linkedList List(size_of_list);
-	    cout<<"Choose any of the folloeing:"<<endl;
-        cout<<"1.Insert Node at the front."<<endl;
-        cout<<"2.Insert node at the end."<<endl;
+	    cout<<"Choose any of the following:"<<endl;
+        cout<<"1.Node at the front."<<endl;
+        cout<<"2.Node at the end."<<endl;
         cout<<"3.Display Linked List"<<endl;
         cout<<"4.Search Element"<<endl;
         cout<<"5.Reverse Linked List "<<endl;
