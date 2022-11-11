@@ -6,53 +6,49 @@
 #include <queue>
 #include <set>
 using namespace std;
+const int first_length = 26;
 
-/* Constants */
-const int ALPHA_LENGTH = 26;
+void getWords(string &Firstword, string &Secondword);
+void printWordLadder(string Firstword, string Secondword);
 
-/* Prototypes */
-void getWords(string &word1, string &word2);
-void printWordLadder(string word1, string word2);
-
-/* Main function */
 int main() {
     
-  string word1, word2;
-  getWords(word1, word2); 
-  printWordLadder(word1, word2);
+  string Firstword, Secondword;
+  getWords(Firstword, Secondword); 
+  printWordLadder(Firstword, Secondword);
     
   return 0;
 }
-void getWords(string &word1, string &word2) {
+void getWords(string &Firstword, string &Secondword) {
   while (true) {
-    cout << "Please enter a word: ";
-    cin>>word1;
+    cout << "Enter any word: ";
+    cin>>Firstword;
     
-cout << "Please enter another word of the same length: ";
-    cin>>word2;
+cout << "Enter any another word of the same length: ";
+    cin>>Secondword;
     
-    if (word1.length() == word2.length()) {
+    if (Firstword.length() == Secondword.length()) {
       break;
     }
     cout << "Please enter two words with the same length." << endl;
   }
 }
-void printWordLadder(string word1, string word2){
+void printWordLadder(string Firstword, string Secondword){
     
-    // creates an empty queue of stacks
+    //Empty queue of stacks
     queue<stack<string> > myQueue;
     
-    //Create a stack which will contain a final word ladder
+    //Stack which will contain a final word ladder
     stack<string> wordladder;
     
-    // creates and adds a stack containing word1 to the queue
+    // creates and adds a stack containing Firstword to the queue
     stack<string> myStack;
-    myStack.push(word1);
+    myStack.push(Firstword);
     myQueue.push(myStack);
     
     // creates two sets: one for the dictionary and one for the tested words
     string token;
-    ifstream dictionary("dictionary.dat");
+    ifstream dictionary("EnglishWords.dat");
     set<string> myDictionary;
     set<string> testedWords;
     
@@ -71,10 +67,10 @@ void printWordLadder(string word1, string word2){
 			string word = ladder.top();
 		        
 			// if the word on top of the stack is the destination word:
-			if (word == word2) {
+			if (word == Secondword) {
 			
-			  // Yeey! output the elements of the stack as the solution.
-			  cout << "The ladder from " << word1 << " to " << word2 << " is \n";
+			  //  output the elements of the stack as the solution.
+			  cout << "The ladder from " << Firstword << " to " << Secondword << " is \n";
 			 
 			  //Copy the ladder stack to worldladder to take it in the order.
 			  while(!ladder.empty()){
@@ -117,7 +113,7 @@ void printWordLadder(string word1, string word2){
 	      }
 	    }
     } else {
-      cerr << "Couldn't open the dictionary" << endl;
+      cerr << "Can't access the dictionary'" << endl;
     }
     
     
